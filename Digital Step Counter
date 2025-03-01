@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+#define HOURS 24
+
+int main() {
+    int steps[HOURS];
+    int totalSteps = 0, maxSteps = 0, minSteps = 0, maxHour = 0, minHour = 0;
+    float avgSteps;
+    
+    // Input steps for each hour
+    printf("Enter the number of steps taken for each hour:\n");
+    for (int i = 0; i < HOURS; i++) {
+        printf("Hour %d: ", i + 1);
+        scanf("%d", &steps[i]);
+        
+        // Add to total
+        totalSteps += steps[i];
+        
+        // Check for max and min steps
+        if (i == 0 || steps[i] > maxSteps) {
+            maxSteps = steps[i];
+            maxHour = i + 1;
+        }
+        if (i == 0 || steps[i] < minSteps) {
+            minSteps = steps[i];
+            minHour = i + 1;
+        }
+
+        // Check for inactivity
+        if (steps[i] == 0) {
+            printf("Warning: No steps recorded in Hour %d (Inactivity detected!)\n", i + 1);
+        }
+    }
+    
+    // Calculate average steps per hour
+    avgSteps = (float) totalSteps / HOURS;
+    
+    // Display results
+    printf("\n--- Step Counter Analysis ---\n");
+    printf("Total steps taken in the day: %d\n", totalSteps);
+    printf("Average steps per hour: %.2f\n", avgSteps);
+    printf("Hour with maximum steps: %d (Steps: %d)\n", maxHour, maxSteps);
+    printf("Hour with minimum steps: %d (Steps: %d)\n", minHour, minSteps);
+
+    return 0;
+}
