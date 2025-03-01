@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+#define DAYS 7  
+#define WEEKLY_GOAL 35  
+
+int main() {
+    float studyHours[DAYS], totalHours = 0;
+
+    printf(" Enter your study hours for each day of the week:\n");
+    for (int i = 0; i < DAYS; i++) {
+        printf("Day %d: ", i + 1);
+        scanf("%f", &studyHours[i]);
+
+        totalHours += studyHours[i];
+
+        if (studyHours[i] > 10) {
+            printf(" Warning: Burnout Alert! You studied %.2f hours on Day %d.\n", studyHours[i], i + 1);
+        }
+    }
+
+    printf("\n Study Hours Summary \n");
+    printf(" Total Study Hours for the Week: %.2f\n", totalHours);
+
+    if (totalHours >= WEEKLY_GOAL) {
+        printf(" Great job! You met your weekly goal of %d hours. Keep it up! \n", WEEKLY_GOAL);
+    } else {
+        float shortfall = WEEKLY_GOAL - totalHours;
+        printf(" You fell short by %.2f hours. Keep pushing! \n", shortfall);
+    }
+
+    return 0;
+}
